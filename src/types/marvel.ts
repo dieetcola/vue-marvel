@@ -1,8 +1,64 @@
+export enum Path {
+  CHARACTERS = 'characters',
+  COMICS = 'comics',
+  CREATORS = 'creators',
+  EVENTS = 'events',
+  SERIES = 'series',
+  STORIES = 'stories'
+}
+
 export type PagedResults = {
   count: number
   limit: number
   offset: number
   total: number
+}
+
+export type Character = {
+  id: number
+  name: string
+  description: string
+  thumbnail: {
+    path: string
+    extension: string
+  }
+  comics: {
+    available: number
+    collectionURI: string
+    items: {
+      resourceURI: string
+      name: string
+    }[]
+  }
+  series: {
+    available: number
+    collectionURI: string
+    items: {
+      resourceURI: string
+      name: string
+    }[]
+  }
+  stories: {
+    available: number
+    collectionURI: string
+    items: {
+      resourceURI: string
+      name: string
+      type: string
+    }[]
+  }
+  events: {
+    available: number
+    collectionURI: string
+    items: {
+      resourceURI: string
+      name: string
+    }[]
+  }
+  urls: {
+    type: string
+    url: string
+  }[]
 }
 
 export type Comic = {
@@ -59,4 +115,8 @@ export type Comic = {
 
 export interface Comics extends PagedResults {
   results: Comic[]
+}
+
+export interface Characters extends PagedResults {
+  results: Character[]
 }

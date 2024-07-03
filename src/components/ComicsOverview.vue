@@ -26,7 +26,12 @@ const getComics = async (page: number = 0) => {
   isLoading.value = true;
   const comics = await useComics(page);
   currentPage.value = comics?.offset / comics?.limit || 0;
+
   totalPages.value = Math.ceil(comics.total / comics.limit);
+  console.log(comics);
+  console.log(currentPage.value);
+  console.log(totalPages.value);
+
   data.value = comics.results;
   isLoading.value = false;
 };
