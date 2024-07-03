@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import type { Ref } from "vue";
+import { ref, type Ref} from "vue";
 import { useRouter } from "vue-router";
 
 import { useCharacterSearch } from "../composables/marvelApi.ts";
@@ -14,7 +13,6 @@ import SearchForm from "./SearchForm.vue";
 const router = useRouter();
 
 const searchQuery: Ref<string> = ref("");
-
 const isSearching: Ref<boolean> = ref(false);
 const data: Ref<Character[] | undefined> = ref();
 const currentPage: Ref<number | string> = ref(0);

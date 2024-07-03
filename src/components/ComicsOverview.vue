@@ -19,21 +19,24 @@ const currentPage: Ref<number | string> = ref(0);
 const totalPages: Ref<number> = ref(0);
 
 if (route.params.page) {
+  // when navigate via pagination buttons
   currentPage.value = +route.params.page;
 }
 
 const getComics = async (page: number = 0) => {
-  isLoading.value = true;
-  const comics = await useComics(page);
-  currentPage.value = comics?.offset / comics?.limit || 0;
+  try {
+    isLoading.value = true;
+    const comics = await useComics(page);
 
-  totalPages.value = Math.ceil(comics.total / comics.limit);
-  console.log(comics);
-  console.log(currentPage.value);
-  console.log(totalPages.value);
+    currentPage.value = comics?.offset / comics?.limit || 0;
+    totalPages.value = Math.ceil(comics.total / comics.limit);
 
-  data.value = comics.results;
-  isLoading.value = false;
+    data.value = comics.results;
+    isLoading.value = false;
+  } catch (e) {
+    // pass the message from the error message as a query parameter to the route
+    router.push({ path: "error", query: { info: e as string } });
+  }
 };
 
 watch(
@@ -53,7 +56,7 @@ onMounted(async () => {
     <LoadingIndicator v-if="isLoading" text="Loading comics..." />
     <div v-if="data && !isLoading">
       <div class="grid grid-flow-row grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <ComicCard :comic="comic" :key="comic.id" v-for="comic in data"></ComicCard>
+        <ComicCard :comic="comic" :key="comic.id" v-for="comic in data" />
       </div>
       <Pagination
         :total-pages="totalPages"

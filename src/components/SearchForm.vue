@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { ref, watch } from "vue";
-import type { Ref } from "vue";
+import { ref, type Ref, watch } from "vue";
 
 const emit = defineEmits(["searchSubmit"]);
 

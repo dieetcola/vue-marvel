@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Character } from "../types/marvel.ts";
-import CardView from "../views/CardView.vue";
+import CardView from "../components/CardView.vue";
 
 interface Props {
   character: Character;

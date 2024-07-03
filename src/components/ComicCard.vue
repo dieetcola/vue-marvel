@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
+
 import type { Comic } from "../types/marvel.ts";
-import CardView from "../views/CardView.vue";
+import CardView from "../components/CardView.vue";
 
 const props = defineProps<{
   comic: Comic;
