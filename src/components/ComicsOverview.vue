@@ -3,8 +3,8 @@ import { ref, onMounted, watch } from "vue";
 import type { Ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import { useComics } from "../composables/marvelApi.ts";
-import type { Comic } from "../types/marvel.ts";
+import { useComics } from "../composables/marvelApi";
+import type { Comic } from "../types/marvel";
 
 import LoadingIndicator from "./LoadingIndicator.vue";
 import ComicCard from "./ComicCard.vue";

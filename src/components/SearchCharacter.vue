@@ -2,8 +2,8 @@
 import { ref, type Ref} from "vue";
 import { useRouter } from "vue-router";
 
-import { useCharacterSearch } from "../composables/marvelApi.ts";
-import type { Character } from "../types/marvel.ts";
+import { useCharacterSearch } from "../composables/marvelApi";
+import type { Character } from "../types/marvel";
 
 import LoadingIndicator from "./LoadingIndicator.vue";
 import CharacterCard from "./CharacterCard.vue";
