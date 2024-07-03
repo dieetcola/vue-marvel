@@ -1,5 +1,5 @@
 import { Path } from '../types/marvel'
-import type { Comics, Characters, Character } from '../types/marvel'
+import type { Comics, Characters } from '../types/marvel'
 
 interface ApiOptions {
   query?: string
@@ -44,4 +44,11 @@ export const useFetch = async (requestURI: string): Promise<Comics | Characters>
 
 export const useComics = async (page: number = 0): Promise<Comics> => {
   return (await useMarvelAPI(Path.COMICS, { page })) as Comics
+}
+
+export const useCharacterSearch = async (query: string, page: number = 0): Promise<Characters> => {
+  return (await useMarvelAPI(Path.CHARACTERS, {
+    query: `nameStartsWith=${query}`,
+    page
+  })) as Characters
 }
